@@ -34,8 +34,8 @@ public class SignupController {
             signupRepository.save(new Signup(name, address));
             return "done";
         }
-
     }
+    
     @RequestMapping(value = "/duplicate", method = RequestMethod.GET)
     @ResponseBody
     public String duplicate(@RequestParam String name){
