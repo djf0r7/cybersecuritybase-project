@@ -26,8 +26,38 @@ public class SignupController {
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String submitForm(@RequestParam String name, @RequestParam String address) {
-        signupRepository.save(new Signup(name, address));
-        return "done";
+        if(!signupRepository.findByName(name).isEmpty()){
+            return "redirect:/duplicate?name=" + name;
+        } else {
+            signupRepository.save(new Signup(name, address));
+            return "done";
+        }
+
+    }
+    @RequestMapping(value = "/duplicate", method = RequestMethod.GET)
+    @ResponseBody
+    public String duplicate(@RequestParam String name){
+        if (signupRepository.findByName(name).isEmpty()){
+            return name + " hasn't been registered.";
+        } else {
+            return name + " has already been registered with address " +
+                    signupRepository.findByName(name).get(0).getAddress() + ".";
+        }
+    }
+    
+    @RequestMapping(value = "/reset", method = RequestMethod.GET)
+    public String loadPasswordForm(){
+        return "reset";
+    }
+    
+    @RequestMapping(value = "/reset", method = RequestMethod.POST)
+    @ResponseBody
+    public String submitPasswordForm(@RequestParam String password, @RequestParam String confirm){
+        if(Objects.equals(password, confirm)){
+            return "Password could be reset";
+        } else {
+            return "Password not confirmed";
+        }
     }
 
 }
