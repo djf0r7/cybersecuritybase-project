@@ -23,7 +23,7 @@ Problem can be reproduced in the following manner.
 Broken Authentication and Session Management
 
 Steps to reproduce:
-1. Run the project in for example Netbeans
+1. Run the project in for example Netbeans or IntelliJ
 2. Go to http://localhost:8080
 3. Sign in with username "ted" and password "ted" and click Login button
 4. In the "form" page click reset password
@@ -32,7 +32,7 @@ Steps to reproduce:
 
 **Fix:**
 
-At least the user's original password should be queried from the user while changing the password. Still, this is not a perfect solution by far, but its atleast better than having no authentication mechanisms at all. Another good way to make this better, would be a use of token's.
+At least the user's original password should be queried from the user while changing the password. Still, this is not a perfect solution by far, but its atleast better than having no authentication mechanisms at all. Another good way to make this better, would be a use of tokens.
 
 ----------------------------------------
 
@@ -47,7 +47,7 @@ Re-entering person's name for event registration will show if that person has al
 Sensitive Data Exposure
 
 Steps to reproduce:
-1. Run the project in for example Netbeans
+1. Run the project in for example Netbeans or IntelliJ
 2. Go to http://localhost:8080
 3. Sign in with username 'ted' and password 'ted' and click Login button
 4. In the "form" page type in "ted" as name and "address" as address and press submit
@@ -99,7 +99,7 @@ Owasp ZAP can be used to fuzz name and address fields, but tester would still ne
 Cross-Site Scripting
 
 Steps to reproduce:
-1. Run the project in for example Netbeans
+1. Run the project in for example Netbeans or IntelliJ
 2. Go to http://localhost:8080
 3. Sign in with username "ted" and password "ted" and click Login button
 4. In the "form" page type in "ted" as name and "<script>alert('BAZINGA!')</script>" as address and press submit
